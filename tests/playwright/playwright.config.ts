@@ -9,7 +9,7 @@ const config: PlaywrightTestConfig = {
   projects: [
     { name: 'Chromium', use: { browserName: 'chromium' } },
   ],
-  reporters: [
+  reporter: [
     ['list'],
     ['html', { open: 'never' }]
   ],
