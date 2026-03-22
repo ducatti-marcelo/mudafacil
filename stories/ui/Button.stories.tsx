@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../../components/ui/button";
-import { Truck } from "lucide-react";
+// Remove unused icon import to keep Storybook clean
 
 const meta: Meta<typeof Button> = {
   title: "UI/Button",

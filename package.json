@@ -3,31 +3,33 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "dev": "node node_modules/next/dist/bin/next dev",
+    "build": "node node_modules/next/dist/bin/next build",
+    "start": "node node_modules/next/dist/bin/next start",
+    "storybook": "node node_modules/storybook/bin/index.cjs dev -p 6006",
+    "build-storybook": "node node_modules/storybook/bin/index.cjs build",
+    "test:playwright": "node node_modules/@playwright/test/cli.js test"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.303.0",
-    "next": "14.0.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "next": "^15.5.14",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@storybook/addon-essentials": "^8.4.0",
     "@storybook/addon-links": "^8.4.0",
     "@storybook/react": "^8.4.0",
-    "@storybook/react-vite": "^8.4.0",
+    "@storybook/react-vite": "^8.6.18",
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
-    "storybook": "^8.4.0",
+    "storybook": "^8.6.18",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.0"

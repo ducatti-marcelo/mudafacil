@@ -16,7 +16,7 @@ export function Accordion({ items }: { items: { header: React.ReactNode; content
   return (
     <div>
       {items.map((it, idx) => (
-        <AccordionItem key={idx} header={it.header} content={it.content} />)
+        <AccordionItem key={idx} header={it.header} content={it.content} />
       ))}
     </div>
   )
