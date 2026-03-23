@@ -2,19 +2,553 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --primary: #2563EB;
-  --primary-foreground: #FFFFFF;
-  --background: #F8FAFC;
-  --foreground: #0F172A;
-  --accent: #F59E0B;
-  --muted: #F1F5F9;
-  --muted-foreground: #64748B;
-  --border: #E2E8F0;
+/* ============================================
+   MudaFácil Design System - CSS Variables
+   ============================================ */
+
+@layer base {
+  :root {
+    /* ============================================
+       PRIMARY COLORS
+       ============================================ */
+    --color-primary-50: #EFF6FF;
+    --color-primary-100: #DBEAFE;
+    --color-primary-200: #BFDBFE;
+    --color-primary-300: #93C5FD;
+    --color-primary-400: #60A5FA;
+    --color-primary-500: #3B82F6;
+    --color-primary-600: #2563EB;
+    --color-primary-700: #1D4ED8;
+    --color-primary-800: #1E40AF;
+    --color-primary-900: #1E3A8A;
+    --color-primary-950: #172554;
+
+    /* ============================================
+       SECONDARY / NEUTRAL COLORS
+       ============================================ */
+    --color-secondary-50: #F8FAFC;
+    --color-secondary-100: #F1F5F9;
+    --color-secondary-200: #E2E8F0;
+    --color-secondary-300: #CBD5E1;
+    --color-secondary-400: #94A3B8;
+    --color-secondary-500: #64748B;
+    --color-secondary-600: #475569;
+    --color-secondary-700: #334155;
+    --color-secondary-800: #1E293B;
+    --color-secondary-900: #0F172A;
+    --color-secondary-950: #020617;
+
+    /* ============================================
+       ACCENT COLORS (Brand)
+       ============================================ */
+    --color-accent-50: #FFFBEB;
+    --color-accent-100: #FEF3C7;
+    --color-accent-200: #FDE68A;
+    --color-accent-300: #FCD34D;
+    --color-accent-400: #FBBF24;
+    --color-accent-500: #F59E0B;
+    --color-accent-600: #D97706;
+    --color-accent-700: #B45309;
+    --color-accent-800: #92400E;
+    --color-accent-900: #78350F;
+    --color-accent-950: #451A03;
+
+    /* ============================================
+       STATUS COLORS
+       ============================================ */
+    /* Success */
+    --color-success-50: #ECFDF5;
+    --color-success-100: #D1FAE5;
+    --color-success-200: #A7F3D0;
+    --color-success-300: #6EE7B7;
+    --color-success-400: #34D399;
+    --color-success-500: #10B981;
+    --color-success-600: #059669;
+    --color-success-700: #047857;
+    --color-success-800: #065F46;
+    --color-success-900: #064E3B;
+
+    /* Warning */
+    --color-warning-50: #FFFBEB;
+    --color-warning-100: #FEF3C7;
+    --color-warning-200: #FDE68A;
+    --color-warning-300: #FCD34D;
+    --color-warning-400: #FBBF24;
+    --color-warning-500: #F59E0B;
+    --color-warning-600: #D97706;
+    --color-warning-700: #B45309;
+    --color-warning-800: #92400E;
+    --color-warning-900: #78350F;
+
+    /* Danger */
+    --color-danger-50: #FEF2F2;
+    --color-danger-100: #FEE2E2;
+    --color-danger-200: #FECACA;
+    --color-danger-300: #FCA5A5;
+    --color-danger-400: #F87171;
+    --color-danger-500: #EF4444;
+    --color-danger-600: #DC2626;
+    --color-danger-700: #B91C1C;
+    --color-danger-800: #991B1B;
+    --color-danger-900: #7F1D1D;
+
+    /* Info */
+    --color-info-50: #EFF6FF;
+    --color-info-100: #DBEAFE;
+    --color-info-200: #BFDBFE;
+    --color-info-300: #93C5FD;
+    --color-info-400: #60A5FA;
+    --color-info-500: #3B82F6;
+    --color-info-600: #2563EB;
+    --color-info-700: #1D4ED8;
+    --color-info-800: #1E40AF;
+    --color-info-900: #1E3A8A;
+
+    /* Neutral */
+    --color-neutral-0: #FFFFFF;
+    --color-neutral-50: #F9FAFB;
+    --color-neutral-100: #F3F4F6;
+    --color-neutral-200: #E5E7EB;
+    --color-neutral-300: #D1D5DB;
+    --color-neutral-400: #9CA3AF;
+    --color-neutral-500: #6B7280;
+    --color-neutral-600: #4B5563;
+    --color-neutral-700: #374151;
+    --color-neutral-800: #1F2937;
+    --color-neutral-900: #111827;
+    --color-neutral-1000: #030712;
+
+    /* ============================================
+       SEMANTIC COLORS
+       ============================================ */
+    /* Background */
+    --bg-primary: var(--color-neutral-0);
+    --bg-secondary: var(--color-secondary-50);
+    --bg-tertiary: var(--color-secondary-100);
+    --bg-inverse: var(--color-secondary-900);
+    --bg-disabled: var(--color-secondary-100);
+    --bg-brand: var(--color-primary-50);
+    --bg-success: var(--color-success-50);
+    --bg-warning: var(--color-warning-50);
+    --bg-danger: var(--color-danger-50);
+    --bg-info: var(--color-info-50);
+
+    /* Text */
+    --text-primary: var(--color-secondary-900);
+    --text-secondary: var(--color-secondary-600);
+    --text-tertiary: var(--color-secondary-500);
+    --text-disabled: var(--color-secondary-400);
+    --text-inverse: var(--color-neutral-0);
+    --text-brand: var(--color-primary-600);
+    --text-success: var(--color-success-700);
+    --text-warning: var(--color-warning-800);
+    --text-danger: var(--color-danger-600);
+    --text-info: var(--color-info-600);
+    --text-link: var(--color-primary-600);
+    --text-link-hover: var(--color-primary-700);
+
+    /* Border */
+    --border-default: var(--color-secondary-200);
+    --border-muted: var(--color-secondary-100);
+    --border-strong: var(--color-secondary-300);
+    --border-disabled: var(--color-secondary-200);
+    --border-focus: var(--color-primary-500);
+    --border-brand: var(--color-primary-600);
+    --border-success: var(--color-success-500);
+    --border-warning: var(--color-warning-500);
+    --border-danger: var(--color-danger-500);
+    --border-info: var(--color-info-500);
+
+    /* Interactive */
+    --interactive-primary: var(--color-primary-600);
+    --interactive-primary-hover: var(--color-primary-700);
+    --interactive-primary-active: var(--color-primary-800);
+    --interactive-primary-disabled: var(--color-primary-200);
+    --interactive-secondary: var(--color-secondary-100);
+    --interactive-secondary-hover: var(--color-secondary-200);
+    --interactive-secondary-active: var(--color-secondary-300);
+    --interactive-destructive: var(--color-danger-600);
+    --interactive-destructive-hover: var(--color-danger-700);
+    --interactive-destructive-active: var(--color-danger-800);
+
+    /* Surface */
+    --surface-primary: var(--color-neutral-0);
+    --surface-secondary: var(--color-secondary-50);
+    --surface-raised: var(--color-neutral-0);
+    --surface-overlay: rgba(15, 23, 42, 0.5);
+    --surface-disabled: var(--color-secondary-100);
+    --surface-hover: var(--color-secondary-50);
+    --surface-active: var(--color-secondary-100);
+    --surface-selected: var(--color-primary-50);
+    --surface-selected-border: var(--color-primary-200);
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    --font-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+
+    --text-2xs: 0.625rem;    /* 10px */
+    --text-xs: 0.75rem;      /* 12px */
+    --text-sm: 0.875rem;     /* 14px */
+    --text-base: 1rem;       /* 16px */
+    --text-lg: 1.125rem;     /* 18px */
+    --text-xl: 1.25rem;      /* 20px */
+    --text-2xl: 1.5rem;      /* 24px */
+    --text-3xl: 1.875rem;    /* 30px */
+    --text-4xl: 2.25rem;     /* 36px */
+    --text-5xl: 3rem;        /* 48px */
+    --text-6xl: 3.75rem;     /* 60px */
+
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    --line-height-none: 1;
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+
+    /* ============================================
+       SPACING
+       ============================================ */
+    --space-0: 0;
+    --space-px: 1px;
+    --space-0-5: 0.125rem;   /* 2px */
+    --space-1: 0.25rem;      /* 4px */
+    --space-1-5: 0.375rem;   /* 6px */
+    --space-2: 0.5rem;       /* 8px */
+    --space-2-5: 0.625rem;   /* 10px */
+    --space-3: 0.75rem;      /* 12px */
+    --space-3-5: 0.875rem;   /* 14px */
+    --space-4: 1rem;         /* 16px */
+    --space-5: 1.25rem;      /* 20px */
+    --space-6: 1.5rem;       /* 24px */
+    --space-8: 2rem;         /* 32px */
+    --space-10: 2.5rem;      /* 40px */
+    --space-12: 3rem;        /* 48px */
+    --space-16: 4rem;        /* 64px */
+    --space-20: 5rem;        /* 80px */
+    --space-24: 6rem;        /* 96px */
+
+    /* ============================================
+       BORDER RADIUS
+       ============================================ */
+    --radius-none: 0;
+    --radius-sm: 0.125rem;   /* 2px */
+    --radius-base: 0.25rem;  /* 4px */
+    --radius-md: 0.375rem;   /* 6px */
+    --radius-lg: 0.5rem;     /* 8px */
+    --radius-xl: 0.75rem;    /* 12px */
+    --radius-2xl: 1rem;      /* 16px */
+    --radius-3xl: 1.5rem;    /* 24px */
+    --radius-full: 9999px;
+
+    /* ============================================
+       SHADOWS
+       ============================================ */
+    --shadow-none: none;
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    --shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.5);
+    --shadow-focus-danger: 0 0 0 3px rgba(239, 68, 68, 0.5);
+    --shadow-focus-success: 0 0 0 3px rgba(16, 185, 129, 0.5);
+    --shadow-brand: 0 4px 14px 0 rgba(59, 130, 246, 0.25);
+
+    /* ============================================
+       TRANSITIONS
+       ============================================ */
+    --transition-duration-instant: 0ms;
+    --transition-duration-fast: 100ms;
+    --transition-duration-normal: 200ms;
+    --transition-duration-slow: 300ms;
+    --transition-duration-slower: 500ms;
+    --transition-timing-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-timing-linear: linear;
+    --transition-timing-in: cubic-bezier(0.4, 0, 1, 1);
+    --transition-timing-out: cubic-bezier(0, 0, 0.2, 1);
+
+    /* ============================================
+       Z-INDEX
+       ============================================ */
+    --z-hide: -1;
+    --z-base: 0;
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    --z-toast: 1080;
+
+    /* ============================================
+       COMPONENT DEFAULTS
+       ============================================ */
+    --input-height: 2.5rem;     /* 40px */
+    --input-padding-x: 0.75rem; /* 12px */
+    --input-border-width: 1px;
+    --input-border-radius: var(--radius-md);
+
+    --button-height: 2.5rem;    /* 40px */
+    --button-padding-x: 1rem;   /* 16px */
+    --button-border-radius: var(--radius-md);
+    --button-font-weight: var(--font-weight-medium);
+
+    --card-border-radius: var(--radius-lg);
+    --card-border-width: 1px;
+    --card-padding: 1.5rem;     /* 24px */
+
+    --badge-border-radius: var(--radius-full);
+    --badge-padding-x: 0.5rem;  /* 8px */
+    --badge-padding-y: 0.125rem;/* 2px */
+  }
+
+  /* Dark mode support */
+  .dark {
+    --bg-primary: var(--color-secondary-900);
+    --bg-secondary: var(--color-secondary-800);
+    --bg-tertiary: var(--color-secondary-700);
+    
+    --text-primary: var(--color-neutral-0);
+    --text-secondary: var(--color-secondary-300);
+    --text-tertiary: var(--color-secondary-400);
+    
+    --border-default: var(--color-secondary-700);
+    --border-muted: var(--color-secondary-800);
+    --border-strong: var(--color-secondary-600);
+  }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--line-height-normal);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: var(--text-link);
+    text-decoration: none;
+    transition: color var(--transition-duration-fast) var(--transition-timing-default);
+  }
+
+  a:hover {
+    color: var(--text-link-hover);
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 0;
+  }
+
+  ::placeholder {
+    color: var(--text-tertiary);
+    opacity: 1;
+  }
+
+  ::selection {
+    background-color: var(--surface-selected);
+    color: var(--text-primary);
+  }
+}
+
+/* ============================================
+   COMPONENT UTILITIES
+   ============================================ */
+@layer components {
+  /* Focus ring utility */
+  .focus-ring {
+    outline: none;
+  }
+  .focus-ring:focus-visible {
+    box-shadow: var(--shadow-focus);
+    border-color: var(--border-focus);
+  }
+
+  /* Truncate text */
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Screen reader only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Visually hidden but focusable */
+  .sr-only-focusable:focus,
+  .sr-only-focusable:active {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeIn var(--transition-duration-normal) var(--transition-timing-default);
+}
+
+.animate-slideInFromTop {
+  animation: slideInFromTop var(--transition-duration-normal) var(--transition-timing-out);
+}
+
+.animate-slideInFromBottom {
+  animation: slideInFromBottom var(--transition-duration-normal) var(--transition-timing-out);
+}
+
+.animate-scaleIn {
+  animation: scaleIn var(--transition-duration-normal) var(--transition-timing-out);
 }
