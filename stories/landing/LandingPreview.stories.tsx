@@ -58,7 +58,7 @@ const MiniParallax = ({ children }: { children: React.ReactNode }) => {
 // Hero Component
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[60vh] flex items-center bg-gradient-to-b from-white to-secondary-50 overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center bg-gradient-to-b from-white to-secondary-50 overflow-hidden">
       {/* Parallax background images */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="relative h-full w-full">
@@ -104,7 +104,7 @@ const HeroSection = () => {
       </div>
       
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 w-full">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-10 md:py-20 w-full">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
