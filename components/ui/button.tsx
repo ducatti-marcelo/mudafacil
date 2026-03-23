@@ -12,7 +12,7 @@ const variantStyles = {
     'hover:bg-primary-700',
     'active:bg-primary-800',
     'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
-    'disabled:bg-primary-200 disabled:text-primary-400 disabled:cursor-not-allowed',
+    'disabled:bg-secondary-100 disabled:text-secondary-400 disabled:border disabled:border-secondary-200 disabled:cursor-not-allowed',
   ].join(' '),
   
   destructive: [
@@ -28,7 +28,7 @@ const variantStyles = {
     'hover:bg-secondary-50 hover:border-secondary-400 hover:text-secondary-900',
     'active:bg-secondary-100',
     'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
-    'disabled:border-secondary-200 disabled:text-secondary-400 disabled:cursor-not-allowed',
+    'disabled:bg-neutral-0 disabled:border-secondary-200 disabled:text-secondary-400 disabled:cursor-not-allowed',
   ].join(' '),
   
   secondary: [
@@ -36,7 +36,7 @@ const variantStyles = {
     'hover:bg-secondary-200',
     'active:bg-secondary-300',
     'focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2',
-    'disabled:bg-secondary-50 disabled:text-secondary-400 disabled:cursor-not-allowed',
+    'disabled:bg-secondary-100 disabled:text-secondary-400 disabled:cursor-not-allowed',
   ].join(' '),
   
   ghost: [
@@ -44,7 +44,7 @@ const variantStyles = {
     'hover:bg-secondary-100 hover:text-secondary-900',
     'active:bg-secondary-200',
     'focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2',
-    'disabled:text-secondary-400 disabled:cursor-not-allowed',
+    'disabled:bg-secondary-50 disabled:text-secondary-400 disabled:cursor-not-allowed',
   ].join(' '),
   
   link: [
@@ -52,7 +52,7 @@ const variantStyles = {
     'hover:text-primary-700 hover:underline',
     'active:text-primary-800',
     'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
-    'disabled:text-primary-300 disabled:cursor-not-allowed',
+    'disabled:text-secondary-400 disabled:no-underline disabled:cursor-not-allowed',
   ].join(' '),
 }
 
