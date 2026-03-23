@@ -7,8 +7,7 @@
     "build": "node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
     "storybook": "node node_modules/storybook/bin/index.cjs dev -p 6006",
-    "build-storybook": "node node_modules/storybook/bin/index.cjs build",
-    "test:playwright": "node node_modules/@playwright/test/cli.js test"
+    "build-storybook": "node node_modules/storybook/bin/index.cjs build"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
@@ -19,7 +18,6 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
     "@storybook/addon-essentials": "^8.4.0",
     "@storybook/addon-links": "^8.4.0",
     "@storybook/react": "^8.4.0",
