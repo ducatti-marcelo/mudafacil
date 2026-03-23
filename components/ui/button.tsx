@@ -1,93 +1,98 @@
-import * as React from "react";
+import * as React from "react"
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
-  size?: "default" | "sm" | "lg" | "icon";
-  asChild?: boolean;
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  asChild?: boolean
+}
+
+const variantStyles = {
+  default: [
+    'bg-primary-600 text-white',
+    'hover:bg-primary-700',
+    'active:bg-primary-800',
+    'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+    'disabled:bg-primary-200 disabled:text-primary-400 disabled:cursor-not-allowed',
+  ].join(' '),
+  
+  destructive: [
+    'bg-danger-600 text-white',
+    'hover:bg-danger-700',
+    'active:bg-danger-800',
+    'focus-visible:ring-2 focus-visible:ring-danger-500 focus-visible:ring-offset-2',
+    'disabled:bg-danger-200 disabled:text-danger-400 disabled:cursor-not-allowed',
+  ].join(' '),
+  
+  outline: [
+    'border border-secondary-300 bg-neutral-0 text-secondary-700',
+    'hover:bg-secondary-50 hover:border-secondary-400 hover:text-secondary-900',
+    'active:bg-secondary-100',
+    'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+    'disabled:border-secondary-200 disabled:text-secondary-400 disabled:cursor-not-allowed',
+  ].join(' '),
+  
+  secondary: [
+    'bg-secondary-100 text-secondary-900',
+    'hover:bg-secondary-200',
+    'active:bg-secondary-300',
+    'focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2',
+    'disabled:bg-secondary-50 disabled:text-secondary-400 disabled:cursor-not-allowed',
+  ].join(' '),
+  
+  ghost: [
+    'bg-transparent text-secondary-700',
+    'hover:bg-secondary-100 hover:text-secondary-900',
+    'active:bg-secondary-200',
+    'focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2',
+    'disabled:text-secondary-400 disabled:cursor-not-allowed',
+  ].join(' '),
+  
+  link: [
+    'bg-transparent text-primary-600 underline underline-offset-4',
+    'hover:text-primary-700 hover:underline',
+    'active:text-primary-800',
+    'focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+    'disabled:text-primary-300 disabled:cursor-not-allowed',
+  ].join(' '),
+}
+
+const sizeStyles = {
+  xs: 'h-6 px-2 text-xs gap-1.5',
+  sm: 'h-8 px-3 text-sm gap-2',
+  md: 'h-10 px-4 text-sm gap-2',
+  lg: 'h-12 px-6 text-base gap-2.5',
+  xl: 'h-14 px-8 text-lg gap-3',
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", asChild = false, style, ...props }, ref) => {
-    const Comp = asChild ? "span" : "button";
-
-    // Base styles
-    const baseStyle: React.CSSProperties = {
-      display: "inline-flex",
-      alignItems: "center",
-      justifyContent: "center",
-      whiteSpace: "nowrap",
-      borderRadius: "6px",
-      fontWeight: 500,
-      fontSize: "14px",
-      transition: "all 0.2s",
-      cursor: "pointer",
-      border: "none",
-      outline: "none",
-    };
-
-    // Size styles
-    const sizeStyles: Record<string, React.CSSProperties> = {
-      default: { padding: "10px 16px" },
-      sm: { padding: "6px 12px", fontSize: "12px" },
-      lg: { padding: "12px 24px", fontSize: "16px" },
-      icon: { width: "40px", height: "40px", padding: 0 },
-    };
-
-    // Variant styles
-    const variantStyles: Record<string, React.CSSProperties> = {
-      default: {
-        backgroundColor: "#2563EB",
-        color: "#FFFFFF",
-      },
-      destructive: {
-        backgroundColor: "#DC2626",
-        color: "#FFFFFF",
-      },
-      outline: {
-        backgroundColor: "transparent",
-        color: "#2563EB",
-        border: "1px solid #E2E8F0",
-      },
-      secondary: {
-        backgroundColor: "#F1F5F9",
-        color: "#0F172A",
-      },
-      ghost: {
-        backgroundColor: "transparent",
-        color: "#2563EB",
-      },
-      link: {
-        backgroundColor: "transparent",
-        color: "#2563EB",
-        textDecoration: "underline",
-        textUnderlineOffset: "4px",
-      },
-    };
-
-    // Merge styles
-    const finalStyle: React.CSSProperties = {
-      ...baseStyle,
-      ...sizeStyles[size],
-      ...variantStyles[variant],
-      ...style,
-    };
-
-    // Handle disabled state
-    if (props.disabled) {
-      finalStyle.opacity = 0.5;
-      finalStyle.cursor = "not-allowed";
-    }
-
+  ({ 
+    className = '', 
+    variant = 'default', 
+    size = 'md', 
+    disabled, 
+    children, 
+    ...props 
+  }, ref) => {
     return (
-      <Comp
+      <button
         ref={ref}
-        style={finalStyle}
+        disabled={disabled}
+        className={`
+          inline-flex items-center justify-center font-medium
+          rounded-lg transition-all duration-200
+          focus-visible:outline-none
+          ${variantStyles[variant]}
+          ${sizeStyles[size]}
+          ${className}
+        `}
         {...props}
-      />
-    );
+      >
+        {children}
+      </button>
+    )
   }
-);
-Button.displayName = "Button";
+)
 
-export { Button };
+Button.displayName = "Button"
+
+export { Button }
