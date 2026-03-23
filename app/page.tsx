@@ -1,106 +1,298 @@
+"use client";
+
+import React from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
 import { Truck, Package, ArrowRight, CheckCircle, BarChart3, Shield, Zap, Box, Home, Sofa, Refrigerator } from "lucide-react";
 
+// Product type
+interface Product {
+  title: string;
+  link: string;
+  thumbnail: string;
+}
+
+// Product images for parallax - MudaFácil themed with people doing moves
+const products: Product[] = [
+  {
+    title: "Família se mudando",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Carregando caixas",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Mudança organizada",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Crianças ajudando",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Transporte de móveis",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Nova casa, novo lar",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Pessoas carregando caixas",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Mudança com crianças",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Pessoa idosa mudando",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Equipe de mudança",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Caminhão de mudança",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Organizando caixas",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Família feliz na nova casa",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Mudança residencial",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&h=600&fit=crop",
+  },
+  {
+    title: "Contentamento com nova casa",
+    link: "#",
+    thumbnail: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=600&fit=crop",
+  },
+];
+
+// Hero Parallax Component
+function HeroParallax({ products }: { products: Product[] }) {
+  const firstRow = products.slice(0, 5);
+  const secondRow = products.slice(5, 10);
+  const thirdRow = products.slice(10, 15);
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
+
+  const translateX = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 1000]),
+    springConfig
+  );
+  const translateXReverse = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, -1000]),
+    springConfig
+  );
+  const rotateX = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
+    springConfig
+  );
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
+    springConfig
+  );
+  const rotateZ = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
+    springConfig
+  );
+  const translateY = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    springConfig
+  );
+
+  return (
+    <div
+      ref={ref}
+      className="h-[300vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+    >
+      {/* Header Content */}
+      <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0 z-10">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-5xl lg:text-7xl font-bold text-secondary-900"
+        >
+          Arraste seus móveis, escolha o caminhão e{" "}
+          <span className="text-primary-600">mude sem estresse</span>
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="max-w-2xl text-lg md:text-xl mt-8 text-secondary-600"
+        >
+          Monte visualmente a carga da sua mudança com drag & drop, compare 
+          tamanhos de caminhão em tempo real e receba cotações instantâneas.
+        </motion.p>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="flex flex-col sm:flex-row gap-4 mt-10"
+        >
+          <Link 
+            href="/register" 
+            className="bg-primary-600 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-primary-700 flex items-center justify-center gap-2 transition-colors"
+          >
+            Começar Grátis
+            <ArrowRight className="h-5 w-5" />
+          </Link>
+          <a 
+            href="#features" 
+            className="border border-secondary-300 px-8 py-4 rounded-lg text-lg font-medium hover:bg-secondary-50 flex items-center justify-center transition-colors"
+          >
+            Ver Como Funciona
+          </a>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex items-center gap-6 mt-8 text-sm text-secondary-500"
+        >
+          <div className="flex items-center gap-2">
+            <CheckCircle className="h-5 w-5 text-success-500" />
+            <span>14 dias grátis</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <CheckCircle className="h-5 w-5 text-success-500" />
+            <span>Sem cartão</span>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Parallax Images */}
+      <motion.div
+        style={{
+          rotateX,
+          rotateZ,
+          translateY,
+          opacity,
+        }}
+      >
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
+          {firstRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateX}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+        <motion.div className="flex flex-row mb-20 space-x-20">
+          {secondRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateXReverse}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
+          {thirdRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateX}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+function ProductCard({
+  product,
+  translate,
+}: {
+  product: Product;
+  translate: MotionValue<number>;
+}) {
+  return (
+    <motion.div
+      style={{
+        x: translate,
+      }}
+      whileHover={{
+        y: -20,
+      }}
+      key={product.title}
+      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+    >
+      <div className="block group-hover/product:shadow-2xl cursor-pointer">
+        <Image
+          src={product.thumbnail}
+          height="600"
+          width="600"
+          className="object-cover object-center absolute h-full w-full inset-0 rounded-xl"
+          alt={product.title}
+        />
+      </div>
+      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none rounded-xl transition-opacity duration-300"></div>
+      <h2 className="absolute bottom-6 left-6 opacity-0 group-hover/product:opacity-100 text-white text-lg font-medium transition-opacity duration-300">
+        {product.title}
+      </h2>
+    </motion.div>
+  );
+}
+
+// Main Page Component
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
-      <header className="border-b bg-white">
+      <header className="border-b bg-white sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Truck className="h-8 w-8 text-[#2563EB]" />
             <span className="text-xl font-bold text-[#2563EB]">MudaFácil</span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#features" className="text-sm font-medium hover:text-[#2563EB]">Funcionalidades</a>
-            <a href="#pricing" className="text-sm font-medium hover:text-[#2563EB]">Preços</a>
-            <Link href="/login" className="text-sm font-medium hover:text-[#2563EB]">Entrar</Link>
-            <Link href="/register" className="bg-[#2563EB] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#1d4ed8]">
+            <a href="#features" className="text-sm font-medium hover:text-[#2563EB] transition-colors">Funcionalidades</a>
+            <a href="#pricing" className="text-sm font-medium hover:text-[#2563EB] transition-colors">Preços</a>
+            <Link href="/login" className="text-sm font-medium hover:text-[#2563EB] transition-colors">Entrar</Link>
+            <Link href="/register" className="bg-[#2563EB] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#1d4ed8] transition-colors">
               Começar Grátis
             </Link>
           </nav>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="flex-1">
-        <div className="max-w-6xl mx-auto px-4 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                Arraste seus móveis, escolha o caminhão e{" "}
-                <span className="text-[#2563EB]">mude sem estresse</span>
-              </h1>
-              <p className="text-lg text-[#64748B] max-w-lg">
-                Monte visualmente a carga da sua mudança com drag & drop, compare tamanhos de caminhão em tempo real e receba cotações instantâneas.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/register" className="bg-[#2563EB] text-white px-6 py-3 rounded-md text-base font-medium hover:bg-[#1d4ed8] flex items-center justify-center gap-2">
-                  Começar Grátis <ArrowRight className="h-4 w-4" />
-                </Link>
-                <a href="#features" className="border border-[#E2E8F0] px-6 py-3 rounded-md text-base font-medium hover:bg-gray-50 flex items-center justify-center">
-                  Ver Como Funciona
-                </a>
-              </div>
-              <div className="flex items-center gap-6 text-sm text-[#64748B]">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>14 dias grátis</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-green-500" />
-                  <span>Sem cartão</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Hero Visual */}
-            <div className="bg-gradient-to-br from-blue-50 to-yellow-50 rounded-2xl p-8 border border-[#E2E8F0]">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="col-span-2 bg-white rounded-lg p-4 border shadow-sm">
-                  <h3 className="font-semibold mb-3">Selecione o Caminhão</h3>
-                  <div className="grid grid-cols-4 gap-2">
-                    {["Fiorino", "HR", "3/4", "Baú"].map((truck) => (
-                      <div key={truck} className="p-2 border rounded text-center text-sm bg-blue-50 border-blue-200">
-                        <Truck className="h-4 w-4 mx-auto mb-1 text-[#2563EB]" />
-                        {truck}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="col-span-2 bg-white rounded-lg p-4 border shadow-sm">
-                  <div className="flex justify-between mb-3">
-                    <h3 className="font-semibold">Canvas de Carga</h3>
-                    <span className="text-sm text-[#F59E0B] font-medium">65%</span>
-                  </div>
-                  <div className="bg-gray-50 rounded border-2 border-dashed border-gray-200 h-32 flex items-center justify-center gap-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded flex items-center justify-center">
-                      <Refrigerator className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <div className="w-16 h-10 bg-green-100 rounded flex items-center justify-center">
-                      <Box className="h-6 w-6 text-green-600" />
-                    </div>
-                    <div className="w-20 h-8 bg-purple-100 rounded flex items-center justify-center">
-                      <Sofa className="h-6 w-6 text-purple-600" />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-2 bg-white rounded-lg p-4 border shadow-sm">
-                  <div className="flex justify-between">
-                    <div>
-                      <p className="text-sm text-[#64748B]">Volume Total</p>
-                      <p className="text-2xl font-bold">8.5 m³</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm text-[#64748B]">Peso Estimado</p>
-                      <p className="text-2xl font-bold">320 kg</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Hero with Parallax */}
+      <section className="relative bg-gradient-to-b from-white to-secondary-50">
+        <HeroParallax products={products} />
       </section>
 
       {/* Features */}
@@ -122,7 +314,7 @@ export default function HomePage() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-20" style={{ backgroundColor: "#F8FAFC" }}>
+      <section id="pricing" className="py-20 bg-secondary-50">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Planos acessíveis</h2>
@@ -139,7 +331,7 @@ export default function HomePage() {
       <section className="py-20 bg-[#2563EB] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Pronto para mudar sem estresse?</h2>
-          <Link href="/register" className="inline-flex items-center gap-2 bg-white text-[#2563EB] px-8 py-4 rounded-md text-lg font-medium hover:bg-gray-100 mt-4">
+          <Link href="/register" className="inline-flex items-center gap-2 bg-white text-[#2563EB] px-8 py-4 rounded-md text-lg font-medium hover:bg-gray-100 mt-4 transition-colors">
             Começar Grátis <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
@@ -161,7 +353,7 @@ export default function HomePage() {
 
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="p-6 rounded-xl border bg-white hover:shadow-lg">
+    <div className="p-6 rounded-xl border bg-white hover:shadow-lg transition-shadow">
       <div className="h-12 w-12 rounded-lg bg-blue-50 flex items-center justify-center text-[#2563EB] mb-4">{icon}</div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
       <p className="text-[#64748B]">{description}</p>
@@ -171,7 +363,7 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
 
 function PricingCard({ name, price, features, popular }: { name: string; price: string; features: string[]; popular?: boolean }) {
   return (
-    <div className={`p-8 rounded-2xl border-2 bg-white ${popular ? 'border-[#2563EB] shadow-xl scale-105' : 'border-[#E2E8F0]'}`}>
+    <div className={`p-8 rounded-2xl border-2 bg-white relative ${popular ? 'border-[#2563EB] shadow-xl scale-105' : 'border-[#E2E8F0]'}`}>
       {popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F59E0B] text-white px-3 py-1 rounded-full text-xs">Popular</div>}
       <h3 className="text-2xl font-bold mb-2">{name}</h3>
       <p className="text-3xl font-bold mb-4">{price}</p>
@@ -182,7 +374,7 @@ function PricingCard({ name, price, features, popular }: { name: string; price: 
           </li>
         ))}
       </ul>
-      <Link href="/register" className="block w-full text-center border border-[#E2E8F0] py-2 rounded-md hover:bg-gray-50">
+      <Link href="/register" className="block w-full text-center border border-[#E2E8F0] py-2 rounded-md hover:bg-gray-50 transition-colors">
         Escolher
       </Link>
     </div>
